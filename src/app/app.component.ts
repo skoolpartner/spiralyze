@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'main';
+  parentIndx:number = null;
+  childIndx:number = null;
+  addKey:string='';
+  addVal:string='';
   displayStyle:string = "none"; 
   elementControl:string = '';
   selectGrid:string = '';
@@ -24,6 +28,13 @@ export class AppComponent {
     }
   ];
 
+
+  ngOnInit(){
+    const lStorage = localStorage.getItem('saveData');
+    if(lStorage != null){
+      this.contentGeneratedList = JSON.parse(lStorage);
+    }
+  }
 
   // Assiging new element under individual row after 12Grid
 
@@ -82,7 +93,22 @@ export class AppComponent {
   }
 
   openElement(index:number, childIndex:number){
+    debugger
+    this.parentIndx = index;
+    this.childIndx = childIndex;
     this.displayStyle = 'block';
+  }
+
+  savePopup(){
+    debugger
+    this.contentGeneratedList[this.parentIndx].elementRecord[this.childIndx].array.push({key:this.addKey, value:this.addVal});
+    this.displayStyle = 'none';
+  }
+
+  submit(){
+    console.log( this.contentGeneratedList);
+
+    localStorage.setItem('saveData', JSON.stringify( this.contentGeneratedList));
   }
 
 }

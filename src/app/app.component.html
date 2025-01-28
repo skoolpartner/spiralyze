@@ -8,9 +8,9 @@
       <div class="flex-first-child">
         
         <div class="form-group">
-          <label>Select Element {{elementControl}}</label>
+          <label>Select Element </label>
           <select  [(ngModel)]="elementControl" class="form-control" name="elementControl" >
-            <option *ngFor="let element of elementList; let i = index" [value]="element">{{element}} </option>
+            <option *ngFor="let element of elementList; let i = index" [value]="element" [select]="elementControl">{{element}} </option>
           </select>
         </div>
 
@@ -43,19 +43,25 @@
                 <div  class="col-md-{{_child.size}} custMargin" *ngIf="_child.name == 'MultiChoice'" >
                   <button type="button" class="btn-close deleteIcon" aria-label="Close" (click)="removeElement(i, idx)"></button>
                   <input type="text"  class="custom-form-control" placeholder="add label" [(ngModel)]="_child.label">
-                  
-                  <button type="button" class="btn-add" aria-label="Close" (click)="openElement(i, idx)"><i class="bi bi-plus"></i>
-                  </button>
-                  <fieldset  *ngFor="_drop of _child?.array; let i = index;">
-                    <legend>{{_drop?.key}}</legend>
-                    <input type="radio" name="action_{{i}}" id="i" value="_drop?.value" />
+                 
+                  <div (click)="openElement(i, idx)"><i class="bi bi-plus plus-btn"></i></div>
+
+
                 
-                  </fieldset>
+                  <div  *ngFor="let _drop of _child?.array; let _drIndx = index" class="float-start multi-container">
+                    <label class="float-end custom-multi-key">{{_drop?.key}}</label>
+                    <input type="radio" class="form-control  custom-multi-value" name="reason_{{_drIndx}}" [value]="_drop?.value">
+                  </div>
                 </div>
 
             </ng-container>
 
         </div>
+
+
+        <div class="clearfix"></div>
+
+        <div><button type="button" (click)="submit()">Save</button></div>
 
       </div>
 
@@ -85,7 +91,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="displayStyle = 'none'">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" (click)="savePopup()">Save</button>
       </div>
     </div>
   </div>
