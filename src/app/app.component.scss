@@ -1,0 +1,39 @@
+input, select {
+    border: 1px solid #a1a1a1;
+}
+
+.flex-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .flex-first-child{
+        flex:20%;
+        border: 1px solid #cecece;
+        overflow: hidden;
+        padding: 15px;
+
+        .form-group{
+            margin-bottom: 15px;
+        }
+    }
+    .flex-second-child{
+        flex:80%;
+        border: 1px solid #cecece;
+        overflow: hidden;
+        padding: 20px;
+
+        .custMargin{
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+        .custom-form-control{
+            border-bottom: 1px solid #9edaff!important;
+            margin-bottom: 8px;
+            width: 100%;
+            border: 0px;
+        }
+    }
+
+
+}
