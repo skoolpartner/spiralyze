@@ -27,23 +27,33 @@
 
       <div class="flex-second-child">
 
-        <div class="row">
 
-          <ng-container *ngFor="let _data of contentGeneratedList; let i = index" >
+          <div class="row" *ngFor="let _data of contentGeneratedList; let i = index" >
+
+            <ng-container *ngFor="let _child of _data?.elementRecord; let idx = index">
             
-            <div  class="col-md-{{_data.size}} custMargin"  *ngIf="_data.name == 'Input'" >
-              <input type="text" class="custom-form-control" placeholder="add label" [(ngModel)]="_data.label">
-              <input type="text" class="form-control" [(ngModel)]="_data.value">
-            </div>
+                <div  class="col-md-{{_child.size}} custMargin"  *ngIf="_child.name == 'Input'" >
+                  <button type="button" class="btn-close deleteIcon" aria-label="Close" (click)="removeElement(i, idx)"></button>
 
-            <div  class="col-md-{{_data.size}} custMargin" *ngIf="_data.name == 'Dropdown'" >
-              <input type="text" class="custom-form-control" placeholder="add label" [(ngModel)]="_data.label">
-              <select class="form-control" placeholder="Select" [(ngModel)]="_data.value">
-                <option *ngFor="_drop of _data.array; let i = index;">{{_drop}}</option>
-              </select>
-            </div>
+                  <input type="text" class="custom-form-control" placeholder="add label" [(ngModel)]="_child.label">
+                  <input type="text" class="form-control" [(ngModel)]="_child.value">
+                </div>
 
-          </ng-container>
+
+                <div  class="col-md-{{_child.size}} custMargin" *ngIf="_child.name == 'MultiChoice'" >
+                  <button type="button" class="btn-close deleteIcon" aria-label="Close" (click)="removeElement(i, idx)"></button>
+                  <input type="text"  class="custom-form-control" placeholder="add label" [(ngModel)]="_child.label">
+                  
+                  <button type="button" class="btn-add" aria-label="Close" (click)="openElement(i, idx)"><i class="bi bi-plus"></i>
+                  </button>
+                  <fieldset  *ngFor="_drop of _child?.array; let i = index;">
+                    <legend>{{_drop?.key}}</legend>
+                    <input type="radio" name="action_{{i}}" id="i" value="_drop?.value" />
+                
+                  </fieldset>
+                </div>
+
+            </ng-container>
 
         </div>
 
@@ -56,5 +66,29 @@
 
 </div>
 
+
+
+
+
+<!-- Multiple Choice Value Popup -->
+
+<div class="modal" tabindex="-1" [ngStyle]="{'display':displayStyle}" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Values</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="displayStyle = 'none'"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12"><input type="text" [(ngModel)]="addKey" class="form-control" placeholder="Add Label"></div>
+        <div class="col-md-12"><input type="text" [(ngModel)]="addVal" class="form-control mt-2"  placeholder="Add Value"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="displayStyle = 'none'">Close</button>
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

@@ -24,16 +24,27 @@ input, select {
         padding: 20px;
 
         .custMargin{
-            margin-right: 5px;
+            margin-right: 0px;
             margin-bottom: 10px;
+            position: relative;
+
+            .deleteIcon{
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                font-size: 12px;
+            }
         }
         .custom-form-control{
             border-bottom: 1px solid #9edaff!important;
             margin-bottom: 8px;
             width: 100%;
             border: 0px;
+            outline: #166aab;
         }
+        
     }
 
+    
 
 }
