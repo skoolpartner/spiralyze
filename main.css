@@ -229,5 +229,12 @@ input[type="text"]:focus{
   
   .righttNavigation{
       width:100%;
+      text-align: center;
+      overflow: hidden;
   }
+  .flex-container{
+    width: 100%;
+    text-align: center;
+}
+
   }

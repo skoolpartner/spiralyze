@@ -160,7 +160,7 @@ function saveMultiChoice(){
         content  = `<div class="multi-radio" >
        
         <input type="radio" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
-        <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
+        <span id="${_id}" class="valueTopup" onclick="editChoice(this, ${_id})">${key}</span>
          <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
         </div>
         </div>`
@@ -169,7 +169,7 @@ function saveMultiChoice(){
         content  = `<div class="multi-radio" >
        
         <input type="checkbox" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
-        <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
+        <span id="${_id}" class="valueTopup" onclick="editChoice(this, ${_id})">${key}</span>
          <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
         </div>
         </div>`
