@@ -23,7 +23,7 @@ function elementFunction(event){
         let _id = Math.random() * 2;
 
         let genComponent = `<div class="element-wid" id="${_id}">
-        <span class="cross-btn" onclick="deleteRow(${_id})"></span>
+        <span class="cross-btn common-class" onclick="deleteRow(${_id})"></span>
         <input type="text" id="inputKey_${_id}" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
         <input type="text" class="custom-value" id="inputVal_${_id}"  onchange="inputValueData(event, ${_id}, 'value')">
         </div>`;
@@ -35,17 +35,17 @@ function elementFunction(event){
         let _id = Math.random() * 1.2;
 
         let genComponent = `<div class="element-wid" id="${_id}">
-        <span class="cross-btn" onclick="deleteRow(${_id})"></span>
+        <span class="cross-btn common-class" onclick="deleteRow(${_id})"></span>
 
-        <span class="add-btn" onclick="addRow(${_id})"></span>
+        <span class="add-btn common-class" onclick="addRow(${_id})"></span>
         <input type="text" id="inputKey_${_id}" class="custom-label"  onchange="inputLabelData(event, ${_id}, 'key')" >
        
        
         <div class="multi-radio" >
        
         <input id="inputRadio_${_id}" type="radio" onchange="inputValueData(event, ${_id}, 'radio')">
-        <span  onclick="editChoice(this, ${_id})">sample</span>
-         <span class="cross-btn-radio" onclick="deleteRadioRow(this)"></span>
+        <span class="custom-value" onclick="editChoice(this, ${_id})">sample</span>
+         <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
         </div>
         </div>`
         document.getElementById("rightNav").innerHTML += genComponent;
@@ -141,7 +141,7 @@ function saveMultiChoice(){
        
     <input type="radio" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
     <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
-     <span class="cross-btn-radio" onclick="deleteRadioRow(this)"></span>
+     <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
     </div>
     </div>`
     document.getElementById(currentAddId).innerHTML += content;
@@ -198,7 +198,7 @@ function goback(){
     document.getElementById('isPreview').style.display = 'block';
     document.querySelector(".righttNavigation").style.width = "75%";
 
-    let cls2 = document.querySelectorAll(".cross-btn");
+    let cls2 = document.querySelectorAll(".common-class");
     cls2.forEach(item => {
      item.classList.remove('cross-btn-none');
     });
@@ -226,7 +226,7 @@ function preview(){
     document.querySelector(".righttNavigation").style.margin = "0px auto";
 
    
-    let cls2 = document.querySelectorAll(".cross-btn");
+    let cls2 = document.querySelectorAll(".common-class");
     cls2.forEach(item => {
      item.classList.add('cross-btn-none');
     });
