@@ -9,7 +9,7 @@
 
 <div class="flex-container">
 
-    <div class="leftNavigation">
+    <div class="leftNavigation" id="isPreview">
 
         <select id="element"  class="custom-dropdown" onchange="elementFunction(this)">
             <option value="input">Select Element</option>
@@ -28,6 +28,8 @@
 
     <div class="righttNavigationFooter">
         <button type="button" id="saveMainForm"  class="button-custom mb-10" style="float: right;" onclick="saveMainForm()">Save Form</button>
+        <button type="button" id="goBack"  class="button-custom mb-10" style="float: right;" onclick="goback()">Go Back</button>
+        <button type="button" id="previewForm"  class="button-custom mb-10" style="float: right;" onclick="preview()">Preview Form</button>
 
     </div>
     

@@ -1,7 +1,7 @@
 const mainArray = [];
 let currentAddId;
 let multiChoideCurrentevent;
-
+let isPreview = false;
 
 
 
@@ -25,7 +25,7 @@ function elementFunction(event){
         let genComponent = `<div class="element-wid" id="${_id}">
         <span class="cross-btn" onclick="deleteRow(${_id})"></span>
         <input type="text" id="inputKey_${_id}" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
-        <input type="text" id="inputVal_${_id}"  onchange="inputValueData(event, ${_id}, 'value')">
+        <input type="text" class="custom-value" id="inputVal_${_id}"  onchange="inputValueData(event, ${_id}, 'value')">
         </div>`;
 
         document.getElementById("rightNav").innerHTML += genComponent;
@@ -185,10 +185,53 @@ function cancelPopup(){
 function saveMainForm(){
     let _data = document.getElementById('rightNav').innerHTML;
     localStorage.setItem('htmlSave', _data);
+    document.getElementById("previewForm").style.display = "block";
+    document.getElementById("saveMainForm").style.display = "none";
+    document.getElementById("goBack").style.display = "none";
     alert('Data Saved');
 }
 
 
+function goback(){
+    document.getElementById("goBack").style.display = "none";
+    document.getElementById("saveMainForm").style.display = "block";
+    document.getElementById('isPreview').style.display = 'block';
+    document.querySelector(".righttNavigation").style.width = "75%";
 
 
 
+    let cls = document.querySelectorAll(".custom-label");
+   cls.forEach(item => {
+    item.classList.remove('labelTopup');
+    item.removeAttribute("readonly")
+   });
+
+   let cls1 = document.querySelectorAll(".custom-value");
+   cls1.forEach(item => {
+    item.classList.remove('valueTopup');
+    item.removeAttribute("readonly")
+   });
+
+}
+
+
+function preview(){
+    document.getElementById('previewForm').style.display = 'none';
+    document.getElementById("goBack").style.display = "block";
+    document.getElementById('isPreview').style.display = 'none';
+    document.querySelector(".righttNavigation").style.width = "98%";
+    document.querySelector(".righttNavigation").style.margin = "0px auto";
+
+   let cls = document.querySelectorAll(".custom-label");
+   cls.forEach(item => {
+    item.classList.add('labelTopup');
+    item.setAttribute("readonly", "readonly")
+   });
+
+   let cls1 = document.querySelectorAll(".custom-value");
+   cls1.forEach(item => {
+    item.classList.add('valueTopup');
+    item.setAttribute("readonly", "readonly")
+   });
+
+}

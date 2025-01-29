@@ -188,3 +188,27 @@ input[type="text"]:focus{
     margin-top: 10px;
   }
  
+  .labelTopup{
+    border-bottom: 0px!important;
+    font-size: 18px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+  .labelTopup:focus{
+    border-bottom: 0px!important;
+    outline: none;
+    
+
+  }
+
+  .valueTopup{
+    border: 0px !important;
+    padding: 0px;
+  }
+
+  #goBack{
+    display: none;
+  }
+  #previewForm{
+    display: none;
+  }
