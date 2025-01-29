@@ -221,3 +221,13 @@ input[type="text"]:focus{
   .cross-btn-none{
     display: none;
   }
+
+  @media screen and (min-width:300px) and (max-width:1000px) {
+    .leftNavigation{
+      width:100%;
+  }
+  
+  .righttNavigation{
+      width:100%;
+  }
+  }
