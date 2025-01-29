@@ -73,19 +73,16 @@ function addVal(mainArray, event, origin, id){
     let obj;
 
     if(origin == 'key'){
-        debugger
        let getId = document.getElementById('inputKey_'+id);     
        getId.setAttribute('value', event.target.value);
       obj  = {id:id, key:event.target.value, value: ''};
     }
     else if(origin == 'radio'){
-        debugger
        let getId = document.getElementById('inputRadio_'+id);     
        getId.setAttribute('checked', true);
       obj  = {id:id, key:'', value: 'checked'};
     }
     else{
-        debugger
         let getId = document.getElementById('inputVal_'+id);     
         getId.setAttribute('value', event.target.value);
         obj  = {id:id, key:'', value: event.target.value};
