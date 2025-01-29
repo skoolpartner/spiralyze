@@ -198,7 +198,10 @@ function goback(){
     document.getElementById('isPreview').style.display = 'block';
     document.querySelector(".righttNavigation").style.width = "75%";
 
-
+    let cls2 = document.querySelectorAll(".cross-btn");
+    cls2.forEach(item => {
+     item.classList.remove('cross-btn-none');
+    });
 
     let cls = document.querySelectorAll(".custom-label");
    cls.forEach(item => {
@@ -222,6 +225,12 @@ function preview(){
     document.querySelector(".righttNavigation").style.width = "98%";
     document.querySelector(".righttNavigation").style.margin = "0px auto";
 
+   
+    let cls2 = document.querySelectorAll(".cross-btn");
+    cls2.forEach(item => {
+     item.classList.add('cross-btn-none');
+    });
+
    let cls = document.querySelectorAll(".custom-label");
    cls.forEach(item => {
     item.classList.add('labelTopup');
@@ -230,6 +239,7 @@ function preview(){
 
    let cls1 = document.querySelectorAll(".custom-value");
    cls1.forEach(item => {
+    debugger
     item.classList.add('valueTopup');
     item.setAttribute("readonly", "readonly")
    });
