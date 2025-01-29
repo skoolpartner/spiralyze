@@ -216,7 +216,7 @@ function saveMainForm(){
     let _data = document.getElementById('rightNav').innerHTML;
     localStorage.setItem('htmlSave', _data);
     document.getElementById("previewForm").style.display = "block";
-    document.getElementById("saveMainForm").style.display = "none";
+    document.getElementById("saveMainForm").style.display = "block";
     document.getElementById("goBack").style.display = "none";
     alert('Data Saved');
 }
@@ -252,6 +252,7 @@ function preview(){
     document.getElementById('previewForm').style.display = 'none';
     document.getElementById("goBack").style.display = "block";
     document.getElementById('isPreview').style.display = 'none';
+    document.getElementById("saveMainForm").style.display = "none";
     document.querySelector(".righttNavigation").style.width = "98%";
     document.querySelector(".righttNavigation").style.margin = "0px auto";
 
