@@ -9,7 +9,6 @@ let multiChoideCurrentevent;
 document.addEventListener('DOMContentLoaded', function() {
     var data = localStorage.getItem('htmlSave');
     if(data)
-        debugger
     document.getElementById('rightNav').innerHTML += data;
   });
 
@@ -25,8 +24,8 @@ function elementFunction(event){
 
         let genComponent = `<div class="element-wid" id="${_id}">
         <span class="cross-btn" onclick="deleteRow(${_id})"></span>
-        <input type="text" placeholder="Add Label" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
-        <input type="text" placeholder="Add Value"  onchange="inputValueData(event, ${_id}, 'value')">
+        <input type="text" id="inputKey_${_id}" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
+        <input type="text" id="inputVal_${_id}"  onchange="inputValueData(event, ${_id}, 'value')">
         </div>`;
 
         document.getElementById("rightNav").innerHTML += genComponent;
@@ -39,13 +38,13 @@ function elementFunction(event){
         <span class="cross-btn" onclick="deleteRow(${_id})"></span>
 
         <span class="add-btn" onclick="addRow(${_id})"></span>
-        <input type="text" placeholder="Add Label" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
+        <input type="text" id="inputKey_${_id}" class="custom-label"  onchange="inputLabelData(event, ${_id}, 'key')" >
        
        
         <div class="multi-radio" >
        
-        <input type="radio" value="sample" onchange="inputValueData(event, ${_id}, 'value')">
-        <span id="${_id}" onclick="editChoice(this, ${_id})">sample</span>
+        <input id="inputRadio_${_id}" type="radio" onchange="inputValueData(event, ${_id}, 'radio')">
+        <span  onclick="editChoice(this, ${_id})">sample</span>
          <span class="cross-btn-radio" onclick="deleteRadioRow(this)"></span>
         </div>
         </div>`
@@ -63,7 +62,7 @@ function inputLabelData(event, id, origin){
     addVal(mainArray, event, origin, id);
 }
 
-function inputValueData(event, id){
+function inputValueData(event, id, origin){
     addVal(mainArray, event, origin, id);
 }
 
@@ -74,9 +73,21 @@ function addVal(mainArray, event, origin, id){
     let obj;
 
     if(origin == 'key'){
+        debugger
+       let getId = document.getElementById('inputKey_'+id);     
+       getId.setAttribute('value', event.target.value);
       obj  = {id:id, key:event.target.value, value: ''};
     }
+    else if(origin == 'radio'){
+        debugger
+       let getId = document.getElementById('inputRadio_'+id);     
+       getId.setAttribute('checked', true);
+      obj  = {id:id, key:'', value: 'checked'};
+    }
     else{
+        debugger
+        let getId = document.getElementById('inputVal_'+id);     
+        getId.setAttribute('value', event.target.value);
         obj  = {id:id, key:'', value: event.target.value};
     }
 
@@ -122,7 +133,7 @@ function saveMultiChoice(){
 
     let content  = `<div class="multi-radio" >
        
-    <input type="radio" value="${value}"  onchange="inputValueData(event, ${_id}, 'value')">
+    <input type="radio" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
     <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
      <span class="cross-btn-radio" onclick="deleteRadioRow(this)"></span>
     </div>
@@ -143,7 +154,6 @@ function editMultiChoiceSave(){
 
 
 function editChoice(event, id){
-    debugger
     document.getElementById('saveMulti').style.display = "none";
     document.getElementById('updateMulti').style.display = "block";
     currentAddId = id;
@@ -163,3 +173,8 @@ function saveMainForm(){
     localStorage.setItem('htmlSave', _data);
     alert('Data Saved');
 }
+
+
+
+
+
