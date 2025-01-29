@@ -30,6 +30,10 @@ input[type="text"]:focus{
     padding: 15px;
 }
 
+.righttNavigationFooter{
+    width:75%;
+    float:right;
+}
 
 .custom-dropdown{
     width: 100%;

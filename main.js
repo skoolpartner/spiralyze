@@ -2,8 +2,21 @@ const mainArray = [];
 let currentAddId;
 let multiChoideCurrentevent;
 
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var data = localStorage.getItem('htmlSave');
+    if(data)
+        debugger
+    document.getElementById('rightNav').innerHTML += data;
+  });
+
+
+
+
 function elementFunction(event){
-    debugger
     let ele = document.getElementById("element").value;
     
 
@@ -15,9 +28,6 @@ function elementFunction(event){
         <input type="text" placeholder="Add Label" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
         <input type="text" placeholder="Add Value"  onchange="inputValueData(event, ${_id}, 'value')">
         </div>`;
-
-
-        debugger
 
         document.getElementById("rightNav").innerHTML += genComponent;
     }
@@ -95,7 +105,10 @@ function deleteRadioRow(event){
 }
 
 function addRow(_id){
+    debugger
+    document.getElementById('saveMulti').style.display = "block";
     document.getElementById('updateMulti').style.display = "none";
+    
     currentAddId = _id;
     document.getElementById('main-popup').style.display = "block";
 }
@@ -124,6 +137,7 @@ function editMultiChoiceSave(){
     multiChoideCurrentevent.innerHTML = key;
     multiChoideCurrentevent.previousElementSibling.value = value;
     document.getElementById('main-popup').style.display = "none";
+    
 
 }
 
@@ -141,4 +155,11 @@ function editChoice(event, id){
 
 function cancelPopup(){
     document.getElementById('main-popup').style.display = "none";
+}
+
+
+function saveMainForm(){
+    let _data = document.getElementById('rightNav').innerHTML;
+    localStorage.setItem('htmlSave', _data);
+    alert('Data Saved');
 }
