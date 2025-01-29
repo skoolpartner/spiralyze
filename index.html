@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<link href="./main.css" rel="stylesheet">
+<script src="./main.js"></script>
+</head>
+<body>
+
+<div class="flex-container">
+
+    <div class="leftNavigation">
+
+        <select id="element"  class="custom-dropdown" onchange="elementFunction(this)">
+            <option value="input">Select Element</option>
+            <option value="input">Add Input</option>
+            <option value="multichoice">Add Multi-Choice Radio</option>
+            <option value="checkboxes">Add Checkboxes</option>
+        </select>
+    </div>
+
+
+
+    <div class="righttNavigation" id="rightNav"></div>
+</div>
+
+
+
+
+<!-- POPUP -->
+
+
+<div id="main-popup">
+    <div id="overlay"></div>
+    <div id="popup">
+        <h4>Add Value</h4>
+        <input type="text" class="mb-10" id="multichoiceKey" placeholder="Add Key" />
+        <input type="text" id="multichoiceValue" placeholder="Add value" />
+        <hr>
+        <button type="button" id="saveMulti" class="button-custom" onclick="saveMultiChoice()">Save</button>
+        <button type="button" id="updateMulti" class="button-custom" onclick="editMultiChoiceSave()">Update</button>
+        <button type="button" class="button-custom-cancel" onclick="cancelPopup()">Cancel</button>
+    </div>
+ </div>
+
+
+</body>
+</html>

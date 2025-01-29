@@ -1,0 +1,144 @@
+const mainArray = [];
+let currentAddId;
+let multiChoideCurrentevent;
+
+function elementFunction(event){
+    debugger
+    let ele = document.getElementById("element").value;
+    
+
+    if(ele == 'input'){
+        let _id = Math.random() * 2;
+
+        let genComponent = `<div class="element-wid" id="${_id}">
+        <span class="cross-btn" onclick="deleteRow(${_id})"></span>
+        <input type="text" placeholder="Add Label" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
+        <input type="text" placeholder="Add Value"  onchange="inputValueData(event, ${_id}, 'value')">
+        </div>`;
+
+
+        debugger
+
+        document.getElementById("rightNav").innerHTML += genComponent;
+    }
+
+    else if(ele == 'multichoice'){
+        let _id = Math.random() * 1.2;
+
+        let genComponent = `<div class="element-wid" id="${_id}">
+        <span class="cross-btn" onclick="deleteRow(${_id})"></span>
+
+        <span class="add-btn" onclick="addRow(${_id})"></span>
+        <input type="text" placeholder="Add Label" class="custom-label" onchange="inputLabelData(event, ${_id}, 'key')" >
+       
+       
+        <div class="multi-radio" >
+       
+        <input type="radio" value="sample" onchange="inputValueData(event, ${_id}, 'value')">
+        <span id="${_id}" onclick="editChoice(this, ${_id})">sample</span>
+         <span class="cross-btn-radio" onclick="deleteRadioRow(this)"></span>
+        </div>
+        </div>`
+        document.getElementById("rightNav").innerHTML += genComponent;
+    }
+}   
+
+
+
+function deleteRow(id){
+    document.getElementById(id).remove();
+}
+
+function inputLabelData(event, id, origin){
+    addVal(mainArray, event, origin, id);
+}
+
+function inputValueData(event, id){
+    addVal(mainArray, event, origin, id);
+}
+
+
+
+function addVal(mainArray, event, origin, id){
+
+    let obj;
+
+    if(origin == 'key'){
+      obj  = {id:id, key:event.target.value, value: ''};
+    }
+    else{
+        obj  = {id:id, key:'', value: event.target.value};
+    }
+
+    if(mainArray.length == 0){
+      mainArray.push(obj);
+    }
+    else{
+        let index = mainArray.findIndex(x => x.id == id); 
+        if(index >= 0){
+           if(origin == 'key')
+           mainArray[index].key = event.target.value;
+           else
+           mainArray[index].value = event.target.value;
+        }
+        else{
+            mainArray.push(obj);
+        }
+    }
+
+    return mainArray
+}
+
+
+function deleteRadioRow(event){
+    event.parentNode.remove();
+}
+
+function addRow(_id){
+    document.getElementById('updateMulti').style.display = "none";
+    currentAddId = _id;
+    document.getElementById('main-popup').style.display = "block";
+}
+
+
+function saveMultiChoice(){
+    let _id = Math.random() * 1.2;
+
+    let key = document.getElementById('multichoiceKey').value;
+    let value = document.getElementById('multichoiceValue').value;
+
+    let content  = `<div class="multi-radio" >
+       
+    <input type="radio" value="${value}"  onchange="inputValueData(event, ${_id}, 'value')">
+    <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
+     <span class="cross-btn-radio" onclick="deleteRadioRow(this)"></span>
+    </div>
+    </div>`
+    document.getElementById(currentAddId).innerHTML += content;
+    document.getElementById('main-popup').style.display = "none";
+}
+
+function editMultiChoiceSave(){
+    let key = document.getElementById('multichoiceKey').value;
+    let value = document.getElementById('multichoiceValue').value;
+    multiChoideCurrentevent.innerHTML = key;
+    multiChoideCurrentevent.previousElementSibling.value = value;
+    document.getElementById('main-popup').style.display = "none";
+
+}
+
+
+function editChoice(event, id){
+    debugger
+    document.getElementById('saveMulti').style.display = "none";
+    document.getElementById('updateMulti').style.display = "block";
+    currentAddId = id;
+    multiChoideCurrentevent = event;
+    document.getElementById('main-popup').style.display = "block";
+    document.getElementById('multichoiceKey').value = event.innerHTML;
+    document.getElementById('multichoiceValue').value = event.previousElementSibling.value;
+}
+
+function cancelPopup(){
+    document.getElementById('main-popup').style.display = "none";
+}
