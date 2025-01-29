@@ -2,7 +2,7 @@ const mainArray = [];
 let currentAddId;
 let multiChoideCurrentevent;
 let isPreview = false;
-
+let isRadioCheck;
 
 
 
@@ -37,13 +37,33 @@ function elementFunction(event){
         let genComponent = `<div class="element-wid" id="${_id}">
         <span class="cross-btn common-class" onclick="deleteRow(${_id})"></span>
 
-        <span class="add-btn common-class" onclick="addRow(${_id})"></span>
+        <span class="add-btn common-class" onclick="addRow(${_id}, 'radio')"></span>
         <input type="text" id="inputKey_${_id}" class="custom-label"  onchange="inputLabelData(event, ${_id}, 'key')" >
        
        
         <div class="multi-radio" >
        
         <input id="inputRadio_${_id}" type="radio" onchange="inputValueData(event, ${_id}, 'radio')">
+        <span class="custom-value" onclick="editChoice(this, ${_id})">sample</span>
+         <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
+        </div>
+        </div>`
+        document.getElementById("rightNav").innerHTML += genComponent;
+    }
+
+    else if(ele == 'checkboxes'){
+        let _id = Math.random() * 1.3;
+
+        let genComponent = `<div class="element-wid" id="${_id}">
+        <span class="cross-btn common-class" onclick="deleteRow(${_id})"></span>
+
+        <span class="add-btn common-class" onclick="addRow(${_id}, 'checkbox')"></span>
+        <input type="text" id="inputKey_${_id}" class="custom-label"  onchange="inputLabelData(event, ${_id}, 'key')" >
+       
+       
+        <div class="multi-radio" >
+       
+        <input id="inputRadio_${_id}" type="checkbox" onchange="inputValueData(event, ${_id}, 'radio')">
         <span class="custom-value" onclick="editChoice(this, ${_id})">sample</span>
          <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
         </div>
@@ -112,12 +132,13 @@ function deleteRadioRow(event){
     event.parentNode.remove();
 }
 
-function addRow(_id){
+function addRow(_id, param){
     debugger
     document.getElementById('saveMulti').style.display = "block";
     document.getElementById('updateMulti').style.display = "none";
     
     currentAddId = _id;
+    isRadioCheck = param;
     document.getElementById('main-popup').style.display = "block";
 }
 
@@ -134,13 +155,25 @@ function saveMultiChoice(){
     let key = document.getElementById('multichoiceKey').value;
     let value = document.getElementById('multichoiceValue').value;
 
-    let content  = `<div class="multi-radio" >
+    let content;
+    if(isRadioCheck == 'radio'){
+        content  = `<div class="multi-radio" >
        
-    <input type="radio" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
-    <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
-     <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
-    </div>
-    </div>`
+        <input type="radio" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
+        <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
+         <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
+        </div>
+        </div>`
+    }
+    else{
+        content  = `<div class="multi-radio" >
+       
+        <input type="checkbox" id="inputRadio_${_id}"  onchange="inputValueData(event, ${_id}, 'radio')">
+        <span id="${_id}"  onclick="editChoice(this, ${_id})">${key}</span>
+         <span class="cross-btn-radio common-class" onclick="deleteRadioRow(this)"></span>
+        </div>
+        </div>`
+    }
     document.getElementById(currentAddId).innerHTML += content;
     document.getElementById('main-popup').style.display = "none";
 }

@@ -105,7 +105,7 @@ input[type="text"]:focus{
     border: 1px dashed #ababaa;
     min-width: 104px;
 }
-.multi-radio, input[type="radio"]{
+.multi-radio, input[type="radio"], input[type="checkbox"]{
     float: left;
 }
 .multi-radio, span{
