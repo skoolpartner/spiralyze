@@ -126,6 +126,12 @@ function addRow(_id){
 
 
 function saveMultiChoice(){
+
+    if(document.getElementById('multichoiceKey').value == '' && document.getElementById('multichoiceValue').value == ''){
+        alert('Please add key and value to proceed further');
+        return false
+    }
+
     let _id = Math.random() * 1.2;
 
     let key = document.getElementById('multichoiceKey').value;
@@ -143,6 +149,11 @@ function saveMultiChoice(){
 }
 
 function editMultiChoiceSave(){
+    debugger
+    if((document.getElementById('multichoiceKey').value == '') && (document.getElementById('multichoiceValue').value == '')){
+        alert('Please add key and value to proceed further');
+        return false
+    }
     let key = document.getElementById('multichoiceKey').value;
     let value = document.getElementById('multichoiceValue').value;
     multiChoideCurrentevent.innerHTML = key;
@@ -154,6 +165,9 @@ function editMultiChoiceSave(){
 
 
 function editChoice(event, id){
+
+   
+
     document.getElementById('saveMulti').style.display = "none";
     document.getElementById('updateMulti').style.display = "block";
     currentAddId = id;
